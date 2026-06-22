@@ -183,6 +183,14 @@ const cardFront = document.querySelector('.card-front');
 function openCard() {
     birthdayCard.classList.add('open');
     if(revealInst) revealInst.style.opacity = '0';
+    
+    // Swap to flat 2D letter after animation ends to fix iOS scrolling
+    setTimeout(() => {
+        birthdayCard.style.display = 'none';
+        const flatLetter = document.getElementById('flat-letter');
+        flatLetter.classList.remove('hidden');
+        flatLetter.classList.add('fade-in');
+    }, 1500);
 }
 
 cardFront.addEventListener('click', openCard);

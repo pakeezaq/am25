@@ -513,3 +513,45 @@ body {
     .cake-shadow { transform: translateX(-50%) scale(0.8); }
     .cake-title { font-size: 1.4rem; top: -100px; }
 }
+
+/* --- Flat 2D Letter (Ensures flawless scrolling on mobile/Safari) --- */
+.flat-letter {
+    position: relative;
+    width: 90vw;
+    max-width: 400px;
+    height: 70vh;
+    max-height: 550px;
+    background-image: url('texturedpaper.webp');
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 0 100px rgba(255,235,180,0.15);
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.flat-letter.fade-in {
+    opacity: 1;
+}
+
+.flat-border {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 2px solid rgba(212, 175, 55, 0.4); /* Subtle gold frame */
+    pointer-events: none;
+}
+
+/* Adjust layout on small screens for flat letter too */
+@media (max-width: 768px) {
+    .flat-letter {
+        padding: 2rem;
+    }
+}
+
