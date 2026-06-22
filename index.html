@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>happy 25th birthday, adnan</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Dancing+Script:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- SCENE 1: The Dark Room -->
+    <div id="dark-room" class="scene active">
+        <!-- Ambient lighting overlay -->
+        <div class="ambient-light" id="ambient-light"></div>
+
+        <div class="instructions-wrapper" id="instructions-wrapper">
+            <h1 class="elegant-title">hello, adnan.</h1>
+            <p class="elegant-subtitle">please allow microphone access.</p>
+            <p class="elegant-subtitle">then, make a wish and blow out the candle.</p>
+            <button id="start-mic-btn" class="premium-btn">begin</button>
+        </div>
+
+        <div class="cake-container hidden" id="cake-container">
+            <h1 class="cake-title">happy 25th birthday, adnan.</h1>
+            <div class="cake-shadow"></div>
+            <div class="cake">
+                <div class="cake-stand"></div>
+                <div class="cake-body">
+                    <div class="gold-ribbon"></div>
+                </div>
+                <div class="cake-top"></div>
+                <!-- 3 Candles -->
+                <div class="candle candle1">
+                    <div class="candle-body"></div>
+                    <div class="candle-wick"></div>
+                    <div class="flame"></div>
+                    <div class="glow"></div>
+                </div>
+                <div class="candle candle2">
+                    <div class="candle-body"></div>
+                    <div class="candle-wick"></div>
+                    <div class="flame"></div>
+                    <div class="glow"></div>
+                </div>
+                <div class="candle candle3">
+                    <div class="candle-body"></div>
+                    <div class="candle-wick"></div>
+                    <div class="flame"></div>
+                    <div class="glow"></div>
+                </div>
+            </div>
+            <p class="blow-text" id="blow-text">make a wish & blow into the mic</p>
+        </div>
+    </div>
+
+    <!-- SCENE 2: The Bright Room Reveal -->
+    <div id="bright-room" class="scene">
+        <canvas id="confetti-canvas"></canvas>
+        
+        <div class="card-wrapper">
+            <div class="card" id="birthday-card">
+                <div class="card-front">
+                    <div class="card-border">
+                        <div class="corner-ornament top-left"></div>
+                        <div class="corner-ornament top-right"></div>
+                        <div class="corner-ornament bottom-left"></div>
+                        <div class="corner-ornament bottom-right"></div>
+                    </div>
+                    <div class="card-front-content">
+                        <p class="card-top-text">CELEBRATING</p>
+                        <h2 class="card-title">adnan.</h2>
+                        <div class="card-line"></div>
+                        <p class="card-bottom-text">25 YEARS</p>
+                    </div>
+                </div>
+                <div class="card-inside">
+                    <div class="letter-content">
+                        <p>i know things arent entirely official between us yet,</p>
+                        <p>and honestly, it feels a little bit embarrassing trying to figure out how to wish you.</p>
+                        <p>dont judge me, i couldnt help but wish.</p>
+                        <p>sabah told me about your birthday.</p>
+                        <br>
+                        <p>barakallah fii umrik. may Allah bless you with a beautiful year ahead.</p>
+                        <p>i hope we both are able to keep the barakah in this relationship sustained.</p>
+                        <br>
+                        <p>may Allah make all your affairs easy, and keep you steadfast on His path.</p>
+                        <p>may He fill your heart with contentment, and grant you the best of this world and the hereafter.</p>
+                        <br>
+                        <p>i am genuinely looking forward to getting to know you better.</p>
+                        <br>
+                        <p>have a really great day today.</p>
+                        <br>
+                        <p class="signature">from pakeeza</p>
+                    </div>
+                </div>
+            </div>
+            <p class="reveal-instruction" id="reveal-inst">swipe or tap to reveal letter</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

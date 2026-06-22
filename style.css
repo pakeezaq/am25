@@ -1,0 +1,509 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #050505;
+    color: #e6e6e6;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scene.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* --- SCENE 1: The Dark Room --- */
+#dark-room {
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000000 80%);
+}
+
+.ambient-light {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 140, 0, 0.15) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 1s;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.ambient-light.on {
+    opacity: 1;
+}
+
+/* Instructions */
+.instructions-wrapper {
+    position: absolute;
+    z-index: 10;
+    text-align: center;
+    transition: opacity 1s, transform 1s;
+}
+
+.instructions-wrapper.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+.elegant-title {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: #d4af37; /* Premium Gold */
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+.elegant-subtitle {
+    font-size: 1.2rem;
+    color: #a0a0a0;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+/* Premium Cake Title */
+.cake-title {
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: #d4af37; /* Premium Gold */
+    width: max-content;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.8);
+    opacity: 0;
+    letter-spacing: 4px;
+    animation: fadeInTitle 2s forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInTitle {
+    to { opacity: 1; }
+}
+
+.premium-btn {
+    margin-top: 2rem;
+    padding: 12px 40px;
+    background: transparent;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+    letter-spacing: 2px;
+}
+
+.premium-btn:hover {
+    background: #d4af37;
+    color: #000;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+/* Realistic Cake */
+.cake-container {
+    position: relative;
+    z-index: 5;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: opacity 2s, transform 2s;
+}
+
+.cake-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.blow-text {
+    position: absolute;
+    bottom: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cinzel', serif;
+    color: #e0e0e0;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    width: max-content;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.8);
+    opacity: 0.7;
+    animation: pulseText 3s infinite;
+}
+
+@keyframes pulseText {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; text-shadow: 0 0 20px rgba(255, 215, 0, 0.4); }
+}
+
+.cake-shadow {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 40px;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.9) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.cake {
+    position: relative;
+    width: 200px;
+    height: 180px;
+    z-index: 2;
+}
+
+.cake-stand {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 240px;
+    height: 30px;
+    background: radial-gradient(ellipse at top, #333 0%, #111 100%);
+    border-radius: 50%;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.8), inset 0 2px 5px rgba(255,255,255,0.1);
+}
+
+.cake-body {
+    position: absolute;
+    bottom: 0;
+    width: 200px;
+    height: 150px;
+    background: linear-gradient(to right, #0d0d0d 0%, #1a1a1a 20%, #262626 50%, #1a1a1a 80%, #050505 100%); /* Matte Black Premium Finish */
+    border-radius: 0 0 100px 15px / 0 0 15px 15px;
+    box-shadow: inset 0 -10px 30px rgba(0,0,0,0.9);
+}
+
+.gold-ribbon {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(to right, #8a6d1c 0%, #f9f0a6 30%, #d4af37 50%, #f9f0a6 70%, #8a6d1c 100%);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    border-radius: 0 0 100px 15px / 0 0 15px 15px; /* Match cake curve */
+}
+
+.cake-top {
+    position: absolute;
+    top: 15px;
+    width: 200px;
+    height: 30px;
+    background: radial-gradient(ellipse at center, #262626 0%, #0d0d0d 100%);
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+/* Candles & Flames */
+.candle {
+    position: absolute;
+    top: -40px;
+    width: 12px;
+    height: 50px;
+    z-index: 6;
+}
+.candle1 { left: 30%; transform: translateX(-50%); top: -35px; }
+.candle2 { left: 50%; transform: translateX(-50%); top: -45px; z-index: 7; }
+.candle3 { left: 70%; transform: translateX(-50%); top: -30px; }
+
+.candle-body {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #dcdcdc 0%, #ffffff 50%, #dcdcdc 100%);
+    border-radius: 2px;
+    box-shadow: inset 0 -5px 10px rgba(0,0,0,0.2);
+}
+
+.candle-wick {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 5px;
+    background: #222;
+}
+
+.flame {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 25px;
+    background: radial-gradient(ellipse at bottom, #ffffff 0%, #ffe600 40%, #ff8c00 80%, transparent 100%);
+    border-radius: 50% 50% 20% 20%;
+    filter: drop-shadow(0 0 10px #ff8c00);
+    transform-origin: bottom center;
+    animation: flicker 0.1s infinite alternate;
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.flame.blowing {
+    animation: blowingFlicker 0.05s infinite alternate;
+    transform: translateX(-50%) rotate(-30deg) scale(0.8);
+}
+
+.flame.out {
+    opacity: 0;
+    transform: translateX(-50%) scale(0);
+}
+
+.glow {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(255, 165, 0, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: glowPulse 2s infinite alternate;
+    transition: opacity 0.5s;
+}
+
+.flame.out ~ .glow {
+    opacity: 0;
+}
+
+@keyframes flicker {
+    0% { transform: translateX(-50%) rotate(-2deg) scale(1); }
+    100% { transform: translateX(-50%) rotate(2deg) scale(1.05); }
+}
+
+@keyframes blowingFlicker {
+    0% { transform: translateX(-50%) rotate(-30deg) scale(0.8); }
+    100% { transform: translateX(-50%) rotate(-45deg) scale(0.6); }
+}
+
+@keyframes glowPulse {
+    0% { transform: translateX(-50%) scale(1); opacity: 0.6; }
+    100% { transform: translateX(-50%) scale(1.2); opacity: 0.9; }
+}
+
+
+/* --- SCENE 2: The Bright Room --- */
+#bright-room {
+    background: linear-gradient(135deg, #f4f1e1 0%, #e0d8c3 100%);
+}
+
+#confetti-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.card-wrapper {
+    position: relative;
+    z-index: 5;
+    perspective: 2000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Photorealistic 3D Card */
+.card {
+    position: relative;
+    width: 90vw;
+    max-width: 400px;
+    height: 70vh;
+    max-height: 550px;
+    transform-style: preserve-3d;
+    transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    border-radius: 4px;
+}
+
+.card.open {
+    transform: rotateY(-180deg); /* Flip in place to stay perfectly centered */
+    cursor: default;
+}
+
+.card-front, .card-inside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 4px;
+}
+
+/* Front of Card: Luxurious velvet texture */
+.card-front {
+    background: linear-gradient(135deg, #09121b 0%, #020406 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 2;
+    overflow: hidden;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+}
+
+/* Gold border inside card */
+.card-border {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 2px solid #d4af37;
+    pointer-events: none;
+}
+
+/* Corner Ornaments for Border */
+.corner-ornament {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #d4af37;
+}
+.top-left { top: -6px; left: -6px; border-right: none; border-bottom: none; }
+.top-right { top: -6px; right: -6px; border-left: none; border-bottom: none; }
+.bottom-left { bottom: -6px; left: -6px; border-right: none; border-top: none; }
+.bottom-right { bottom: -6px; right: -6px; border-left: none; border-top: none; }
+
+.card-front-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+}
+
+.card-top-text {
+    font-family: 'Montserrat', sans-serif;
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    letter-spacing: 6px;
+    margin-bottom: 15px;
+}
+
+.card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.8rem;
+    color: #d4af37; /* Premium Gold */
+    line-height: 1.2;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.9);
+    letter-spacing: 2px;
+}
+
+.card-line {
+    width: 40px;
+    height: 2px;
+    background: #d4af37;
+    margin: 25px 0;
+}
+
+.card-bottom-text {
+    font-family: 'Montserrat', sans-serif;
+    color: #a0a0a0;
+    font-size: 1.2rem;
+    letter-spacing: 8px;
+}
+
+/* Inside of Card */
+.card-inside {
+    background-image: url('texturedpaper.webp');
+    background-size: cover;
+    background-position: center;
+    transform: rotateY(180deg);
+    z-index: 1;
+    padding: 3rem;
+    box-shadow: inset 20px 0 50px rgba(0,0,0,0.2), inset 0 0 100px rgba(255,235,180,0.1); /* Enhance paper texture */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter-content {
+    font-family: 'Dancing Script', cursive; /* Elegant Handwriting */
+    font-size: 1.4rem;
+    color: #2c3e50; /* Ink blue/black */
+    line-height: 1.6;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.letter-content p {
+    margin-bottom: 10px;
+}
+
+.signature {
+    margin-top: 20px;
+    font-size: 1.8rem;
+    color: #8b0000; /* Subtle red for heart/signature */
+}
+
+/* Custom Scrollbar for inner card */
+.letter-content::-webkit-scrollbar {
+    width: 6px;
+}
+.letter-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+.letter-content::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.1);
+    border-radius: 3px;
+}
+
+.reveal-instruction {
+    margin-top: 30px;
+    font-family: 'Montserrat', sans-serif;
+    color: #a0a0a0;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    animation: pulseText 2s infinite;
+    pointer-events: none;
+    transition: opacity 0.5s;
+}
+
+@media (max-width: 768px) {
+    .elegant-title { font-size: 2rem; }
+    .card-title { font-size: 2.2rem; }
+    .card-top-text { font-size: 0.8rem; }
+    .card-bottom-text { font-size: 1rem; }
+    .letter-content { font-size: 1.2rem; padding-right: 5px; }
+    .cake { transform: scale(0.8); }
+    .cake-shadow { transform: translateX(-50%) scale(0.8); }
+    .cake-title { font-size: 1.4rem; top: -100px; }
+}
