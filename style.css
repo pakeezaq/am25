@@ -93,7 +93,8 @@ body {
     font-size: 1.8rem;
     font-weight: 300;
     color: #d4af37; /* Premium Gold */
-    width: max-content;
+    width: 90vw;
+    text-align: center;
     text-shadow: 0 5px 15px rgba(0,0,0,0.8);
     opacity: 0;
     letter-spacing: 4px;
@@ -149,7 +150,8 @@ body {
     font-size: 1.2rem;
     letter-spacing: 3px;
     text-transform: uppercase;
-    width: max-content;
+    width: 90vw;
+    text-align: center;
     text-shadow: 0 5px 15px rgba(0,0,0,0.8);
     opacity: 0.7;
     animation: pulseText 3s infinite;
@@ -461,6 +463,8 @@ body {
     height: 100%;
     overflow-y: auto;
     padding-right: 10px;
+    -webkit-overflow-scrolling: touch;
+    pointer-events: auto;
 }
 
 .letter-content p {
@@ -502,6 +506,7 @@ body {
     .card-title { font-size: 2.2rem; }
     .card-top-text { font-size: 0.8rem; }
     .card-bottom-text { font-size: 1rem; }
+    .card-inside { padding: 1.5rem; }
     .letter-content { font-size: 1.2rem; padding-right: 5px; }
     .cake { transform: scale(0.8); }
     .cake-shadow { transform: translateX(-50%) scale(0.8); }
