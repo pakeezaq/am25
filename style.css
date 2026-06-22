@@ -448,7 +448,9 @@ body {
     z-index: 1;
     padding: 3rem;
     box-shadow: inset 20px 0 50px rgba(0,0,0,0.2), inset 0 0 100px rgba(255,235,180,0.1); /* Enhance paper texture */
-    display: block; /* Removed flex to fix iOS scrolling bug */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .letter-content {
@@ -457,13 +459,13 @@ body {
     color: #2c3e50; /* Ink blue/black */
     line-height: 1.6;
     text-align: center;
-    width: 100%;
-    height: 100%;
+    flex: 1;
     overflow-y: auto;
     padding-right: 10px;
     -webkit-overflow-scrolling: touch;
     pointer-events: auto;
     overscroll-behavior: contain;
+    touch-action: pan-y;
 }
 
 .letter-content p {

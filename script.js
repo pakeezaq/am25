@@ -178,23 +178,24 @@ function animateConfetti() {
 
 // --- 3D Card Interaction ---
 const revealInst = document.getElementById('reveal-inst');
+const cardFront = document.querySelector('.card-front');
 
 function openCard() {
     birthdayCard.classList.add('open');
     if(revealInst) revealInst.style.opacity = '0';
 }
 
-birthdayCard.addEventListener('click', openCard);
+cardFront.addEventListener('click', openCard);
 
 // Swipe Support for Mobile
 let touchStartX = 0;
 let touchEndX = 0;
 
-birthdayCard.addEventListener('touchstart', e => {
+cardFront.addEventListener('touchstart', e => {
     touchStartX = e.changedTouches[0].screenX;
 });
 
-birthdayCard.addEventListener('touchend', e => {
+cardFront.addEventListener('touchend', e => {
     touchEndX = e.changedTouches[0].screenX;
     handleSwipe();
 });
